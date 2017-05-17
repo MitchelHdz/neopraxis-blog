@@ -1,0 +1,59 @@
+{% extends "layouts/default.html" %}
+
+{% block content %}
+	<div class="container">
+				{% if data.post.image.exists %}
+					<div class="post-header" style="background:linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.65)),url({{ data.post.image.url}});">
+				{% else %}
+					<div class="post-header" style="background:linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.65)),url(/images/group-23@3x.png);">
+				{% endif %}
+					<div class="post-header-title-box">
+						<p class="post-header-category white-text neopraxis-font-montserrat-bold no-margin-text">{{data.post.categories[0].name}}</p>
+						<p class="post-header-title white-text neopraxis-font-montserrat-bold no-margin-text">{{ data.post.title }}</p>
+					</div>
+				</div>
+				<div class="neopraxis-flex-row post-template-padding">
+					<div class="container neopraxis-flex-column">
+						<div class="post-body">
+							<div class="post-list-image" style="background-image:url({{ data.post.image.url}});"></div>
+							<div class="no-margin-text post-list-text-box-single warm-grey-text neopraxis-font-myriadpro-regular letter-spacing-dot-one">
+								{{data.post.content.full|safe}}
+							</div>
+						</div>
+						<div class="post-single-date-box">
+							<p class="no-margin-text post-date-text slate-green-text neopraxis-font-myriadpro-regular letter-spacing-dot-one">{{ data.post._.publishedDate.format("Do MMMM YYYY") }}</p>
+						</div>
+					</div>
+					<div class="post-newsletter-container">
+					<form>
+						<div class="newsletter-form-box">
+							<p class="newsletter-text no-margin-text neopraxis-font-montserrat-regular greyish-brown-text">Suscríbete a nuestro Newsletter</p>
+							<div class="newsletter-input-box">
+								<input type="text" name="" value="" placeholder="" class="newsletter-input neopraxis-font-montserrat-regular greyish-brown-text">
+							</div>
+							<div class="send-newsletter-btn-box">
+								<button type="submit" class="send-newsletter-btn neopraxis-font-montserrat-regular white-text hover-green">ENVIAR</button>
+							</div>
+						</div>
+					</form>
+					<div class="recent-posts-box">
+						<div class="recent-posts-title-box">
+							<p class="recent-posts-title no-margin-text neopraxis-font-montserrat-regular slate-green-text">Lo más reciente</p>
+						</div>
+						<div class="recent-posts-list">
+							{% for post in data.recents.results %}
+								<div class="recent-posts-link-box">
+									<a href="/blog/post/{{ post.slug }}" class="recent-posts-link">
+										<p class="recent-posts-link-text no-margin-text neopraxis-font-myriadpro-regular warm-grey-text inline-block">{{ post.title }}</p>
+									</a>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+{% endblock %}
